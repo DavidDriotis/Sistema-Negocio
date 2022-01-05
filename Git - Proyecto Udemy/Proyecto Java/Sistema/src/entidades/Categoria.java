@@ -50,7 +50,7 @@ public Categoria(){
         this.descripcion = descripcion;
     }
 
-    public boolean isActivo() {
+    public boolean getActivo() {
         return activo;
     }
 
