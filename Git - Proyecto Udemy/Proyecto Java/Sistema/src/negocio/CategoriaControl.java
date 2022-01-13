@@ -88,9 +88,9 @@ public class CategoriaControl {
                 obj.setNombre(nombre);
                 obj.setDescripcion(descripcion);
                 if (DATOS.actualizar(obj)) {
-                    return "ok";
+                    return "OK";
                 } else{
-                    return "Error en la actualizaion.";
+                    return "Error en la actualizacion.";
                 }
             }
         }

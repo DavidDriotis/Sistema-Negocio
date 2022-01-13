@@ -72,7 +72,6 @@ public class CategoriaDAO implements CrudSimpleInterface<Categoria> {
         } finally {
             ps = null;
             CON.desconectar();
-
         }
         return resp;
     }
@@ -82,10 +81,10 @@ public class CategoriaDAO implements CrudSimpleInterface<Categoria> {
         resp = false;
 
         try {
-            ps = CON.conectar().prepareStatement("UPDATE categoria SET nombre = ? WHERE id = ?");
+            ps = CON.conectar().prepareStatement("UPDATE categoria SET nombre = ?, descripcion = ? WHERE id = ?");
             ps.setString(1, obj.getNombre());
             ps.setString(2, obj.getDescripcion());
-             ps.setInt(3, obj.getId());
+            ps.setInt(3, obj.getId());
 
             if (ps.executeUpdate() > 0) {
                 resp = true;
@@ -97,7 +96,6 @@ public class CategoriaDAO implements CrudSimpleInterface<Categoria> {
         } finally {
             ps = null;
             CON.desconectar();
-
         }
         return resp;        
     }
@@ -182,9 +180,9 @@ public class CategoriaDAO implements CrudSimpleInterface<Categoria> {
             ps = CON.conectar().prepareStatement("SELECT nombre FROM categoria WHERE nombre = ?");       
             ps.setString(1, texto);
             rs = ps.executeQuery();
-            rs.last();
-            
-            if (rs.getRow()>0) {
+                
+            // validando si trae datos o no
+            if (rs.next()) {
                 resp = true;                
             }            
             ps.close();
@@ -196,7 +194,6 @@ public class CategoriaDAO implements CrudSimpleInterface<Categoria> {
             ps = null;
             rs = null;
             CON.desconectar();
-
         }
         return resp;
     }
